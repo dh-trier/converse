@@ -18,8 +18,10 @@ from bs4 import BeautifulSoup as bs
 # Parameters
 
 datadir = join("/", "home", "christof", "Dropbox", "6-Library", "0-Collections", "converse-data", "")
-headerfile = join(os.path.curdir, "teiHeader-model.xml")
-htmlfolder = join(datadir, "html", "*.htm")
+#datadir = join("/", "home", "christof", "Dropbox", "6-Library", "1-Literature", "RO", "Hajduk", "")
+#datadir = join("/", "home", "christof", "Dropbox", "6-Library", "0-Collections", "rompop", "")
+headerfile = join("teiHeader-model.xml")
+htmlfolder = join(datadir, "html", "Mortimer_Adorable.htm")
 xmlfolder = join(datadir, "tei", "")
 
 
@@ -35,6 +37,9 @@ def read_html(file):
 
 def mark_html(html): 
     # chapter headings
+    for item in html.find_all("h3"): 
+        item.insert_before("\n{CH=}")
+        item.insert_after("{=CH}")
     for item in html.find_all("h2"): 
         item.insert_before("\n{CH=}")
         item.insert_after("{=CH}")
@@ -51,6 +56,7 @@ def mark_html(html):
 
 def get_text(html): 
     text = html.get_text()
+    text = re.sub("&nbsp;", " ", text)
     return text
 
 
@@ -62,8 +68,8 @@ def add_tei(text):
     text = re.sub("{P=}", "<p>", text)
     text = re.sub("{=P}", "</p>", text)
     # italics
-    text = re.sub("{HI=}", "<seg rend=\"italics\">", text)
-    text = re.sub("{=HI}", "</seg>", text)
+    text = re.sub("{HI=}", "<hi rend=\"italics\">", text)
+    text = re.sub("{=HI}", "</hi>", text)
     # start and end
     start = "<text>\n<front><div><p></p></div></front>\n<body><div>\n"
     end = "</div>\n</body>\n<back><div><p></p></div></back>\n</text>\n</TEI>"
@@ -72,7 +78,7 @@ def add_tei(text):
 
 
 def add_said(text): 
-    text = re.sub("<p>[—-][ ]{1,5}(.*?)</p>", "<p><said>-- \\1</said></p>", text)
+    text = re.sub("<p>[“—-][ ]{0,5}(.*?)</p>", "<p><said>-- \\1</said></p>", text)
     return text
 
 
@@ -95,7 +101,7 @@ def clean_xmltei(xmltei):
 
 
 def save_xmltei(text, xmlfolder, basename): 
-    filename = join(xmlfolder, basename + "_generated.xml")
+    filename = join(xmlfolder, basename + ".xml")
     #print(filename)
     with open(filename, "w", encoding="utf8") as outfile: 
         outfile.write(text)
