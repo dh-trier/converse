@@ -3,9 +3,9 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="full">
-            <title type="short"></title>
-            <idno type="dh-trier"></idno>
+        <title>
+          <title type="short"></title>
+          <idno type="dhtr"></idno>
         </title>
         <author>
           <name type="short"></name>
