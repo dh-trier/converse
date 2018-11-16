@@ -7,13 +7,14 @@ Simple scripts for converting between text formats using Python.
 * Minimal `teiHeader` with minimal metadata (author, title, identifier)
 * Paragraphs marked as `p`
 * Chapter headings `head` and chapter boundaries `div`
-* Italics `seg rend="italic"`
-* Direct speech `said` (based on formal features alone)
-* Subsection markers `milestone`
+* Highlighting using `hi`
 * Removing all unnecessary HTML markup
-* Sorting out front and back matter from the main body text
+
+## Manual checks
+
 * Pretty printing
-* Checking well-formedness with feedback
+* Sorting out front and back matter from the main body text
+* Checking well-formedness and validity against schema: `ropo.rnc`
 
 
  
