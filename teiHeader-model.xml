@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="">
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>
-          <title type="short"></title>
-          <idno type="dhtr"></idno>
-        </title>
+        <title type="short"></title>
         <author>
           <name type="short"></name>
         </author>

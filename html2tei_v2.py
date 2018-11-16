@@ -68,10 +68,10 @@ def add_tei(text):
     text = re.sub("{P=}", "<p>", text)
     text = re.sub("{=P}", "</p>", text)
     # italics
-    text = re.sub("{HI=}", "<hi rend=\"italics\">", text)
+    text = re.sub("{HI=}", "<hi>", text)
     text = re.sub("{=HI}", "</hi>", text)
     # start and end
-    start = "<text>\n<front><div><p></p></div></front>\n<body><div>\n"
+    start = "<text>\n<front><div><p></p></div></front>\n<body xml:lang=\"fra\"><div>"
     end = "</div>\n</body>\n<back><div><p></p></div></back>\n</text>\n</TEI>"
     text = start + text + end
     return text
@@ -116,7 +116,7 @@ def main(headerfile, htmlfolder, xmlfolder):
         text = html.get_text()
         text = get_text(html)
         text = add_tei(text)
-        text = add_said(text)
+        #text = add_said(text)
         header = get_header(headerfile)
         xmltei = merge(header, text)
         xmltei = clean_xmltei(xmltei)
